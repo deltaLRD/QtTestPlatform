@@ -14,18 +14,18 @@
 #define KEY_SHARED L"KeyShared"
 #define PLAYER_SHARED L"PlayerShared"
 #define START_STOP_SHARED L"StartStopShared" 
-//PVP,PVEÓÃ²»Í¬µÄ¹²ÏíÄÚ´æ´æ´¢½ø³ÌĞÅÏ¢²¢Í¨ĞÅ 
+//PVP,PVEç”¨ä¸åŒçš„å…±äº«å†…å­˜å­˜å‚¨è¿›ç¨‹ä¿¡æ¯å¹¶é€šä¿¡ 
 #define PROCESS_INFO_SHARED L"ProcessInfoShared" 
 
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
-//ÉùÃ÷µÄpve½Ó¿Ú 
+//å£°æ˜çš„pveæ¥å£ 
 void ai_pve(DataStruct*data,KeyStruct*key);
 void*threadFuc(void*threadarg){
 	struct ThreadArg *thrdArg;
  	thrdArg = (struct ThreadArg *) threadarg;
  	ai_pve(thrdArg->data,thrdArg->key);
- 	//ÔËĞĞ½áÊø½«timeoutÖÃ0
+ 	//è¿è¡Œç»“æŸå°†timeoutç½®0
 	thrdArg->timeout=0; 
 }
 void*timer(void*threadarg){
@@ -49,34 +49,34 @@ int findLastIndexOfCharFromArr(char ch,char*str){
 }
 int main(int argc, char** argv) {
 
-	//³õÊ¼»¯key½á¹¹Ìå£¬×÷Îª²ÎÊı´«¸øai_pvpºÍai_pve 
+	//åˆå§‹åŒ–keyç»“æ„ä½“ï¼Œä½œä¸ºå‚æ•°ä¼ ç»™ai_pvpå’Œai_pve 
 	struct KeyStruct key; 
-	//´æ·Å¶ÁÈ¡µÄ½á¹¹ÌåÊı¾İ 
+	//å­˜æ”¾è¯»å–çš„ç»“æ„ä½“æ•°æ® 
 	struct DataStruct data;
 	
 	int timeout_count=0;
  
     int offset=0;
-    //Ö÷½ø³ÌÔÚÓÎÏ·½áÊøºó£¬·¢ËÍ±êÖ¾Î»ÈÃAI½ø³Ì½áÊø
+    //ä¸»è¿›ç¨‹åœ¨æ¸¸æˆç»“æŸåï¼Œå‘é€æ ‡å¿—ä½è®©AIè¿›ç¨‹ç»“æŸ
     bool startFlag=false,stopFlag=false;
 
-    //¹²ÏíÎÄ¼şµÄ¾ä±ú
+    //å…±äº«æ–‡ä»¶çš„å¥æŸ„
     HANDLE data_Handle=NULL,key_Handle=NULL,/*start_stop_Handle=NULL,*/process_info_Handle=NULL;
-    //¹²ÏíÎÄ¼şµÄÖ¸Õë
+    //å…±äº«æ–‡ä»¶çš„æŒ‡é’ˆ
     LPVOID data_ptr=NULL,key_ptr=NULL,/*start_stop_ptr=NULL,*/process_info_ptr=NULL;
     
-    	//»ñÈ¡½ø³ÌÃû³Æ 
+    	//è·å–è¿›ç¨‹åç§° 
 	cout<<argv[0]<<endl;
 	int index_Dot = findLastIndexOfCharFromArr('.',argv[0]);
 	int index_Slash = findLastIndexOfCharFromArr('\\',argv[0]);
 //	cout<<index_Dot<<endl<<index_Slash<<endl;
-	//´æ´¢½ø³ÌµÄÃû³Æ 
+	//å­˜å‚¨è¿›ç¨‹çš„åç§° 
 	char name[20];
 	memcpy(name,argv[0]+index_Slash+1,(index_Dot-index_Slash-1));
 	name[index_Dot-index_Slash-1]='\0';
 //	cout<<"name="<<name<<strlen(name)<<endl;
 
-	//½«½ø³ÌĞÅÏ¢Ğ´Èë¹²ÏíÄÚ´æ
+	//å°†è¿›ç¨‹ä¿¡æ¯å†™å…¥å…±äº«å†…å­˜
 	/*
 	process_info_Handle= CreateFileMappingW(INVALID_HANDLE_VALUE, NULL, PAGE_EXECUTE_READWRITE, 0, 0x11111111, PROCESS_INFO_SHARED);
 	process_info_ptr = MapViewOfFile(process_info_Handle,FILE_MAP_ALL_ACCESS,0,0,0x11111111);
@@ -86,13 +86,13 @@ int main(int argc, char** argv) {
 	memcpy(process_info_ptr,&pInfo,sizeof(ProcessInfoStruct));*/
     
     
-    //´´½¨key¾ä±ú£¬²¢Ó³ÉäµÃµ½key_ptr
+    //åˆ›å»ºkeyå¥æŸ„ï¼Œå¹¶æ˜ å°„å¾—åˆ°key_ptr
     key_Handle = CreateFileMappingW(INVALID_HANDLE_VALUE, NULL, PAGE_EXECUTE_READWRITE, 0, 0x11111111, KEY_SHARED);
     key_ptr = MapViewOfFile(key_Handle,FILE_MAP_ALL_ACCESS,0,0,0x11111111);
 	
 	
 	
-	//´ò¿ª¹²ÏíÎÄ¼ş£¬²é¿´Ö÷½ø³ÌÊÇ·ñ¿ªÆô£¬ÊÇÔòĞ´ÈëFlag±íÃ÷ai½ø³ÌÆô¶¯ 
+	//æ‰“å¼€å…±äº«æ–‡ä»¶ï¼ŒæŸ¥çœ‹ä¸»è¿›ç¨‹æ˜¯å¦å¼€å¯ï¼Œæ˜¯åˆ™å†™å…¥Flagè¡¨æ˜aiè¿›ç¨‹å¯åŠ¨ 
 //	FlagStruct flag_Main,flag_Self={1,1};
 	struct ProcessInfoStruct pInfo_Main,pInfo_Self;
 	pInfo_Self.id=1;
@@ -103,11 +103,11 @@ int main(int argc, char** argv) {
 
 	if(start_stop_Handle){
 		start_stop_ptr = MapViewOfFile(start_stop_Handle,FILE_MAP_ALL_ACCESS,0,0,0x11111111);
-    	//¶ÁÈ¡Ö÷½ø³ÌFlag 
+    	//è¯»å–ä¸»è¿›ç¨‹Flag 
     	memcpy(&flag_Main,start_stop_ptr,sizeof(FlagStruct));
     	if(flag_Main.id==0&&flag_Main.exist==1){
     		memcpy((unsigned char*)start_stop_ptr+sizeof(FlagStruct),&flag_Self,sizeof(FlagStruct));
-    		cout<<"main process & ai process both start£¡£¡\n";
+    		cout<<"main process & ai process both startï¼ï¼\n";
     		startFlag = true; 
 		}
 	}else{
@@ -115,14 +115,14 @@ int main(int argc, char** argv) {
 	}*/
 	
 	process_info_Handle=OpenFileMappingW(FILE_MAP_ALL_ACCESS, false, PROCESS_INFO_SHARED);
-		//Èç¹ûÖ÷½ø³ÌÃ»Æô¶¯£¬¿ÉÄÜĞèÒªÑ­»·µÈ´ı 
+		//å¦‚æœä¸»è¿›ç¨‹æ²¡å¯åŠ¨ï¼Œå¯èƒ½éœ€è¦å¾ªç¯ç­‰å¾… 
 	if(process_info_Handle){
 		process_info_ptr=MapViewOfFile(process_info_Handle,FILE_MAP_ALL_ACCESS,0,0,0x11111111);
-		//¶ÁÈ¡Ö÷½ø³ÌĞÅÏ¢
+		//è¯»å–ä¸»è¿›ç¨‹ä¿¡æ¯
 		memcpy(&pInfo_Main,process_info_ptr,sizeof(ProcessInfoStruct));
 		if(pInfo_Main.id==0&&pInfo_Main.exist==1){
 			memcpy((unsigned char*)process_info_ptr+sizeof(ProcessInfoStruct),&pInfo_Self,sizeof(ProcessInfoStruct));
-			cout<<"main process & ai process both start£¡£¡\n";
+			cout<<"main process & ai process both startï¼ï¼\n";
     		startFlag = true; 
 		} 
 	}else{
@@ -132,20 +132,20 @@ int main(int argc, char** argv) {
 
 	
     while(!stopFlag&&startFlag){
-    	//»ñÈ¡ÏµÍ³Ê±¼ä 
+    	//è·å–ç³»ç»Ÿæ—¶é—´ 
     	/*
     		
 		SYSTEMTIME sys; 
     	GetLocalTime( &sys ); 
-    	printf( "\nstart while= %4d/%02d/%02d %02d:%02d:%02d.%03d ĞÇÆÚ%1d\n",sys.wYear,sys.wMonth,sys.wDay,sys.wHour,sys.wMinute, sys.wSecond,sys.wMilliseconds,sys.wDayOfWeek);
+    	printf( "\nstart while= %4d/%02d/%02d %02d:%02d:%02d.%03d æ˜ŸæœŸ%1d\n",sys.wYear,sys.wMonth,sys.wDay,sys.wHour,sys.wMinute, sys.wSecond,sys.wMilliseconds,sys.wDayOfWeek);
     	
-    	//Ñ­»·¶ÁÈ¡Flag£¬²é¿´ÊÇ·ñĞèÒªÍ£Ö¹½ø³ÌÔËĞĞ
+    	//å¾ªç¯è¯»å–Flagï¼ŒæŸ¥çœ‹æ˜¯å¦éœ€è¦åœæ­¢è¿›ç¨‹è¿è¡Œ
 		memcpy(&flag_Main,(unsigned char*)start_stop_ptr+2*sizeof(FlagStruct),sizeof(FlagStruct));
 		if(flag_Main.id==0&&flag_Main.exist==-1){
 //			cout<<"Main process want to stop!!!\n"; 
 			stopFlag=false;
 			startFlag=false; 
-			//½«×Ô¼ºÍ£Ö¹µÄflagĞ´Èë¹²ÏíÄÚ´æ
+			//å°†è‡ªå·±åœæ­¢çš„flagå†™å…¥å…±äº«å†…å­˜
 			flag_Self={1,-1};
 			memcpy((unsigned char*)start_stop_ptr+3*sizeof(FlagStruct),&flag_Self,sizeof(FlagStruct));
 			break;
@@ -156,21 +156,21 @@ int main(int argc, char** argv) {
 			//cout<<"Main process want to stop!!!\n"; 
 			stopFlag=false;
 			startFlag=false; 
-			//½«×Ô¼ºÍ£Ö¹µÄflagĞ´Èë¹²ÏíÄÚ´æ
+			//å°†è‡ªå·±åœæ­¢çš„flagå†™å…¥å…±äº«å†…å­˜
 			pInfo_Self.id=1;
 			pInfo_Self.exist=-1;
 			memcpy((unsigned char*)process_info_ptr+3*sizeof(ProcessInfoStruct),&pInfo_Self,sizeof(ProcessInfoStruct));
 			break;
 		}
 		
-        //´ò¿ª¹²ÏíµÄdataÎÄ¼ş¶ÔÏó
+        //æ‰“å¼€å…±äº«çš„dataæ–‡ä»¶å¯¹è±¡
         data_Handle = OpenFileMappingW(FILE_MAP_ALL_ACCESS, false, DATA_SHARED);
-        //ÅĞ¶Ï¾ä±úÊÇ·ñ´æÔÚ
+        //åˆ¤æ–­å¥æŸ„æ˜¯å¦å­˜åœ¨
         if (data_Handle)
         {
-            //Í¨¹ıÓ³ÉäµÃµ½ÎÄ¼ş¶ÔÏóµÄÖ¸Õë
+            //é€šè¿‡æ˜ å°„å¾—åˆ°æ–‡ä»¶å¯¹è±¡çš„æŒ‡é’ˆ
             data_ptr = MapViewOfFile(data_Handle, FILE_MAP_ALL_ACCESS, 0, 0, 0);
-            //´Ó¹²ÏíÎÄ¼şÖĞ¶ÁÈ¡data½á¹¹ÌåÊı¾İ 
+            //ä»å…±äº«æ–‡ä»¶ä¸­è¯»å–dataç»“æ„ä½“æ•°æ® 
 			memcpy(&data,(unsigned char *)data_ptr+offset*sizeof (DataStruct),sizeof(DataStruct));
 //			cout<<"data.id="<<data.id<<" offset="<<offset<<endl;
 			
@@ -180,8 +180,8 @@ int main(int argc, char** argv) {
 				
 //				ai1_pve(&data,&key); 
 				/*
-				Æô¶¯Ò»¸öÏß³ÌÈ¥µ÷ÓÃ½Ó¿Úº¯Êı
-				¸ù¾İtimeoutÅĞ¶ÏÊÇ·ñ³¬Ê± 
+				å¯åŠ¨ä¸€ä¸ªçº¿ç¨‹å»è°ƒç”¨æ¥å£å‡½æ•°
+				æ ¹æ®timeoutåˆ¤æ–­æ˜¯å¦è¶…æ—¶ 
 				*/ 
 				ThreadArg threadArg;
 				threadArg.timeout=1;
@@ -198,7 +198,7 @@ int main(int argc, char** argv) {
 					cout<<"offset="<<offset<<" AI  timeout!\n";
 					timeout_count++;
 				}
-				//ÀûÓÃkey.id=-1±êÖ¾³¬Ê± 
+				//åˆ©ç”¨key.id=-1æ ‡å¿—è¶…æ—¶ 
 				if(timeout_count>=3){
 					key.id=-1;
 					cout<<"timeout reached three times!!!\n" ;
@@ -222,7 +222,7 @@ int main(int argc, char** argv) {
             UnmapViewOfFile(data_ptr);
             CloseHandle(data_Handle);
         }else{
-            //Êä³ö
+            //è¾“å‡º
 //            cout<<"data file not exist!!!  last error:"<<GetLastError()<<endl;
             Sleep(10);
 
@@ -230,16 +230,17 @@ int main(int argc, char** argv) {
 
     }
 	
-	//½â³ıÓ³Éä
+	//è§£é™¤æ˜ å°„
     UnmapViewOfFile(key_ptr);
 //    UnmapViewOfFile(start_stop_ptr);
     UnmapViewOfFile(process_info_ptr);
-    //¹Ø±Õ¾ä±ú
+    //å…³é—­å¥æŸ„
 
     CloseHandle(key_Handle);
 //    CloseHandle(start_stop_Handle);
     CloseHandle(process_info_Handle);
     cout<<"AI process stoped\n";
 //    pthread_exit(NULL);
+	//system("pause");
 	return 0;
 }
