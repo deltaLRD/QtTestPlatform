@@ -17,10 +17,12 @@
 ### 前提依赖
 
 `g++` 
+`git`
 首先在命令行中测试以下命令
 
 ```shell
 g++ -v
+git -v
 ```
 
 ### 改进设想
@@ -29,3 +31,12 @@ g++ -v
 2. 将代码中的C语言风格的代码改为C++17
 3. 将所有硬编码的路径改为相对路径
 4. 测试评测功能
+
+### 开发流程
+
+1. 电脑上找个地方
+2. 打开终端切换到刚刚找到的地方
+3. `git clone https://github.com/deltaLRD/QtTestPlatform.git`
+4. `git branch new_feature_XXX` XXX可以是功能或者开发者自己的名字,但请使用英文
+5. 编写自己的代码
+6. `git push --set-upstream origin new_feature_XXX`
