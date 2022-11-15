@@ -22,3 +22,10 @@
 ```shell
 g++ -v
 ```
+
+### 改进设想
+
+1. 将学生文件放入`./student_data/pvp1` `./student_data/pvp2` `./student_data/pve`
+2. 将代码中的C语言风格的代码改为C++17
+3. 将所有硬编码的路径改为相对路径
+4. 测试评测功能
