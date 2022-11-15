@@ -1,60 +1,57 @@
-#include<iostream>
+#include <iostream>
 #include <vector>
 #include <fstream>
-#include<string>
-#include<io.h>
-using namespace std;
-void getFiles( string path, vector<string>& files )
-{
-	//ÎÄ¼ş¾ä±ú
-	long   hFile   =   0;
-	//ÎÄ¼şĞÅÏ¢
-	struct _finddata_t fileinfo;
-	string p;
-	if((hFile = _findfirst(p.assign(path).append("\\*").c_str(),&fileinfo)) !=  -1)
-	{
-		do
-		{
-			//Èç¹ûÊÇÄ¿Â¼,µü´úÖ®
-			//Èç¹û²»ÊÇ,¼ÓÈëÁĞ±í
-			if((fileinfo.attrib &  _A_SUBDIR))
-			{
-				if(strcmp(fileinfo.name,".") != 0  &&  strcmp(fileinfo.name,"..") != 0)
-					getFiles( p.assign(path).append("\\").append(fileinfo.name), files );
-			}
-			else
-			{
-				files.push_back(p.assign(path).append("\\").append(fileinfo.name) );
-			}
-		}while(_findnext(hFile, &fileinfo)  == 0);
-		_findclose(hFile);
-	}
-}
-int main(){
-	char * filePath = "C:\\Users\\yang\\Desktop\\2022cd\\zxl\\pve";
-	vector<string> files;
- 
-//»ñÈ¡¸ÃÂ·¾¶ÏÂµÄËùÓĞÎÄ¼ş
-//C:\\Users\\yang\\Desktop\\2.cpp
-	getFiles(filePath, files);
-	int size = files.size();
-	char* a="gcc D:\\code\\AI_Process\\main.cpp ";
-	string b;
-	char* c=" -o C:\\Users\\yang\\Desktop\\2022cd\\zxl\\pve_exe\\";
-	char* d=".exe -lstdc++ -std=c++11";
-	//b=a+files[22]+' '+files1[56]+c+to_string(22)+'-'+to_string(56)+d;
-	for(int i=0;i<size;i++){
-		//cout<<files[i].substr(41,12)<<'\n';
-	//	cout<<i<<": "<<files[i]<<'\n';
-		//b=a+files[i]+c+files[i].substr(37,12)+d;
-		//cout<<i<<": "<<b<<'\n';
-	}
+#include <string>
+#include <filesystem>
+namespace fs = std::filesystem;
 
-	for(int j=0;j<size-1;j++){
-		b=a+files[j]+c+files[j].substr(37,12)+d;
-		//cout<<b<<endl;
-		system(b.c_str());
+// not support subdir
+std::vector<fs::path> getfiles(const fs::path& path)
+{
+	std::vector<fs::path> files;
+	if(!fs::is_directory(path))
+	{
+		std::cout << path.c_str() << " is not a directory" << std::endl;
+		return files;
 	}
-	cout<<'\n'<<"over";
+	for(auto const& dir_entry: fs::directory_iterator(path))
+	{
+		std::cout << dir_entry.path().filename() << std::endl;
+		files.push_back(dir_entry.path());
+	}
+	return files;
+}
+
+int main(){
+	fs::path workpath{fs::current_path()};
+	fs::path pvepath = workpath / "student_data" / "pve";
+	if(!fs::exists(pvepath))
+	{
+		std::cout << pvepath.c_str() << " do not exist" << std::endl;
+	}
+	std::vector<fs::path> pvefiles = getfiles(pvepath);
+	
+// //è·å–è¯¥è·¯å¾„ä¸‹çš„æ‰€æœ‰æ–‡ä»¶
+// //C:\\Users\\yang\\Desktop\\2.cpp
+// 	getFiles(filePath, files);
+// 	int size = files.size();
+// 	char* a="gcc D:\\code\\AI_Process\\main.cpp ";
+// 	string b;
+// 	char* c=" -o C:\\Users\\yang\\Desktop\\2022cd\\zxl\\pve_exe\\";
+// 	char* d=".exe -lstdc++ -std=c++11";
+// 	//b=a+files[22]+' '+files1[56]+c+to_string(22)+'-'+to_string(56)+d;
+// 	for(int i=0;i<size;i++){
+// 		//cout<<files[i].substr(41,12)<<'\n';
+// 	//	cout<<i<<": "<<files[i]<<'\n';
+// 		//b=a+files[i]+c+files[i].substr(37,12)+d;
+// 		//cout<<i<<": "<<b<<'\n';
+// 	}
+
+// 	for(int j=0;j<size-1;j++){
+// 		b=a+files[j]+c+files[j].substr(37,12)+d;
+// 		//cout<<b<<endl;
+// 		system(b.c_str());
+// 	}
+// 	cout<<'\n'<<"over";
 	return 0;
 }

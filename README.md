@@ -40,3 +40,9 @@ git -v
 4. `git branch new_feature_XXX` XXX可以是功能或者开发者自己的名字,但请使用英文
 5. 编写自己的代码
 6. `git push --set-upstream origin new_feature_XXX`
+
+### 编译命令
+
+```shell
+g++ -std=c++17 deal_pve.cpp -o deal_pve.exe
+```
