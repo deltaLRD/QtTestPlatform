@@ -1,0 +1,61 @@
+# Project: p_gcc
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o ai1.o ai2.o ball.o ballpool.o bullet.o bulletpool.o core.o flyobject.o objectpool.o plane.o pooledobject.o
+LINKOBJ  = main.o ai1.o ai2.o ball.o ballpool.o bullet.o bulletpool.o core.o flyobject.o objectpool.o plane.o pooledobject.o
+LIBS     = -L"D:/appstudy/Dev-Cpp/MinGW64/lib" -L"D:/appstudy/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"D:/appstudy/Dev-Cpp/MinGW64/include" -I"D:/appstudy/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/appstudy/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"D:/appstudy/Dev-Cpp/MinGW64/include" -I"D:/appstudy/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/appstudy/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/appstudy/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = p_gcc.exe
+CXXFLAGS = $(CXXINCS) -g3 -std=c++11
+CFLAGS   = $(INCS) -g3 -std=c++11
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+ai1.o: ai1.cpp
+	$(CPP) -c ai1.cpp -o ai1.o $(CXXFLAGS)
+
+ai2.o: ai2.cpp
+	$(CPP) -c ai2.cpp -o ai2.o $(CXXFLAGS)
+
+ball.o: ball.cpp
+	$(CPP) -c ball.cpp -o ball.o $(CXXFLAGS)
+
+ballpool.o: ballpool.cpp
+	$(CPP) -c ballpool.cpp -o ballpool.o $(CXXFLAGS)
+
+bullet.o: bullet.cpp
+	$(CPP) -c bullet.cpp -o bullet.o $(CXXFLAGS)
+
+bulletpool.o: bulletpool.cpp
+	$(CPP) -c bulletpool.cpp -o bulletpool.o $(CXXFLAGS)
+
+core.o: core.cpp
+	$(CPP) -c core.cpp -o core.o $(CXXFLAGS)
+
+flyobject.o: flyobject.cpp
+	$(CPP) -c flyobject.cpp -o flyobject.o $(CXXFLAGS)
+
+objectpool.o: objectpool.cpp
+	$(CPP) -c objectpool.cpp -o objectpool.o $(CXXFLAGS)
+
+plane.o: plane.cpp
+	$(CPP) -c plane.cpp -o plane.o $(CXXFLAGS)
+
+pooledobject.o: pooledobject.cpp
+	$(CPP) -c pooledobject.cpp -o pooledobject.o $(CXXFLAGS)

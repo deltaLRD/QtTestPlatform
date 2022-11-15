@@ -1,0 +1,90 @@
+<RCC>
+    <qresource prefix="/textures/fire">
+        <file alias="blue0">textures/fire/fire1.png</file>
+        <file alias="blue1">textures/fire/fire2.png</file>
+        <file alias="blue2">textures/fire/fire3.png</file>
+        <file alias="red0">textures/fire/fire4.png</file>
+        <file alias="red1">textures/fire/fire5.png</file>
+        <file alias="red2">textures/fire/fire6.png</file>
+    </qresource>
+    <qresource prefix="/textures/explode">
+        <file alias="sonic0">textures/explode/sonicExplosion00.png</file>
+        <file alias="sonic1">textures/explode/sonicExplosion01.png</file>
+        <file alias="sonic2">textures/explode/sonicExplosion02.png</file>
+        <file alias="sonic3">textures/explode/sonicExplosion03.png</file>
+        <file alias="sonic4">textures/explode/sonicExplosion04.png</file>
+        <file alias="sonic5">textures/explode/sonicExplosion05.png</file>
+        <file alias="sonic6">textures/explode/sonicExplosion06.png</file>
+        <file alias="sonic7">textures/explode/sonicExplosion07.png</file>
+        <file alias="sonic8">textures/explode/sonicExplosion08.png</file>
+        <file alias="regular0">textures/explode/regularExplosion00.png</file>
+        <file alias="regular1">textures/explode/regularExplosion01.png</file>
+        <file alias="regular2">textures/explode/regularExplosion02.png</file>
+        <file alias="regular3">textures/explode/regularExplosion03.png</file>
+        <file alias="regular4">textures/explode/regularExplosion04.png</file>
+        <file alias="regular5">textures/explode/regularExplosion05.png</file>
+        <file alias="regular6">textures/explode/regularExplosion06.png</file>
+        <file alias="regular7">textures/explode/regularExplosion07.png</file>
+        <file alias="regular8">textures/explode/regularExplosion08.png</file>
+    </qresource>
+    <qresource prefix="/textures/others">
+        <file alias="shield0">textures/shield1.png</file>
+        <file alias="shield1">textures/shield2.png</file>
+        <file alias="shield2">textures/shield3.png</file>
+        <file alias="background">textures/starfield.png</file>
+        <file alias="plane_blue">textures/playerShip0.png</file>
+        <file alias="plane_red">textures/playerShip1.png</file>
+        <file alias="ball">textures/ball.png</file>
+    </qresource>
+    <qresource prefix="/shaders">
+        <file alias="spriteFS">shaders/spriteFS.glsl</file>
+        <file alias="spriteVS">shaders/spriteVS.glsl</file>
+        <file alias="textFS">shaders/textFS.glsl</file>
+        <file alias="textVS">shaders/textVS.glsl</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file alias="KenVector Future">fonts/KenVector Future.ttf</file>
+    </qresource>
+    <qresource prefix="/audio">
+        <file alias="flight_sound.ogg">audio/flight_sound.ogg</file>
+        <file alias="shield_down.wav">audio/shield_down.wav</file>
+        <file alias="shield_up.wav">audio/shield_up.wav</file>
+        <file alias="SimpleBeat.ogg">audio/SimpleBeat.ogg</file>
+        <file alias="laser_shoot">audio/laser_shoot.wav</file>
+        <file alias="laser_explode">audio/laser_explode.wav</file>
+        <file alias="plane_explode">audio/plane_explode.wav</file>
+    </qresource>
+    <qresource prefix="/textures/mp">
+        <file alias="blue_left">textures/mp/barHorizontal_blue_left.png</file>
+        <file alias="blue_mid">textures/mp/barHorizontal_blue_mid.png</file>
+        <file alias="blue_right">textures/mp/barHorizontal_blue_right.png</file>
+        <file alias="red_left">textures/mp/barHorizontal_red_left.png</file>
+        <file alias="red_mid">textures/mp/barHorizontal_red_mid.png</file>
+        <file alias="red_right">textures/mp/barHorizontal_red_right.png</file>
+        <file alias="white_left">textures/mp/barHorizontal_white_left.png</file>
+        <file alias="white_mid">textures/mp/barHorizontal_white_mid.png</file>
+        <file alias="white_right">textures/mp/barHorizontal_white_right.png</file>
+    </qresource>
+    <qresource prefix="/textures/laser">
+        <file alias="blue0">textures/laser/laserBlue0.png</file>
+        <file alias="blue1">textures/laser/laserBlue1.png</file>
+        <file alias="blue2">textures/laser/laserBlue2.png</file>
+        <file alias="blue3">textures/laser/laserBlue3.png</file>
+        <file alias="blue4">textures/laser/laserBlue4.png</file>
+        <file alias="blue5">textures/laser/laserBlue5.png</file>
+        <file alias="blue6">textures/laser/laserBlue6.png</file>
+        <file alias="red0">textures/laser/laserRed0.png</file>
+        <file alias="red1">textures/laser/laserRed1.png</file>
+        <file alias="red2">textures/laser/laserRed2.png</file>
+        <file alias="red3">textures/laser/laserRed3.png</file>
+        <file alias="red4">textures/laser/laserRed4.png</file>
+        <file alias="red5">textures/laser/laserRed5.png</file>
+        <file alias="red6">textures/laser/laserRed6.png</file>
+    </qresource>
+    <qresource prefix="/textures/ui">
+        <file alias="blueButton">textures/UI/buttonBlue.png</file>
+        <file alias="greenButton">textures/UI/buttonGreen.png</file>
+        <file alias="redButton">textures/UI/buttonRed.png</file>
+        <file alias="yellowButton">textures/UI/buttonYellow.png</file>
+    </qresource>
+</RCC>
